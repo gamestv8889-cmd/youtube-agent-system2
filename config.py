@@ -1,0 +1,17 @@
+import os
+
+PROJECT_NAME = "YouTube Automation System"
+
+YOUTUBE_CHANNEL_ID = os.getenv("YOUTUBE_CHANNEL_ID", "")
+
+VIDEO_FOLDER = "videos"
+ASSET_FOLDER = "assets"
+OUTPUT_FOLDER = "output"
+
+DEFAULT_LANGUAGE = "en-US"
+DEFAULT_TIMEZONE = "Asia/Tashkent"
+
+AI_IMAGES_ENABLED = True
+AI_VIDEO_GENERATION_ENABLED = False
+
+MAX_RETRIES = 3
