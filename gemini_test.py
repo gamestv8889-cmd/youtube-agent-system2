@@ -1,18 +1,12 @@
 import os
-from google import genai
 
-api_key = os.getenv("GEMINI_API_KEY")
+print("TEST START")
 
-if not api_key:
-    print("ERROR: GEMINI_API_KEY topilmadi")
-    raise SystemExit(1)
+key = os.getenv("GEMINI_API_KEY")
 
-client = genai.Client(api_key=api_key)
+if key:
+    print("GEMINI_API_KEY FOUND")
+else:
+    print("GEMINI_API_KEY NOT FOUND")
 
-response = client.models.generate_content(
-    model="gemini-2.5-flash",
-    contents="Say hello in one short sentence."
-)
-
-print("GEMINI TEST SUCCESS")
-print(response.text)
+print("TEST END")
