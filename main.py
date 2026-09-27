@@ -11,7 +11,6 @@ from agents.quality_agent import QualityAgent
 
 def main():
     print("YouTube Automation System started")
-    print("=" * 40)
 
     project = {
         "gameplay": "videos/gameplay.mp4",
@@ -32,16 +31,11 @@ def main():
     ]
 
     for agent in agents:
-        print(f"\nRunning: {agent.name}")
+        print("Running:", agent.name)
+        result = agent.run(project)
+        print(result)
 
-        try:
-            result = agent.run(project)
-            print(result)
-
-        except Exception as error:
-            print(f"ERROR in {agent.name}: {error}")
-
-    print("\nWorkflow test completed.")
+    print("Workflow test completed.")
 
 
 if __name__ == "__main__":
