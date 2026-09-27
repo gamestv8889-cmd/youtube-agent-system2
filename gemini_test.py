@@ -1,12 +1,22 @@
 import os
+from google import genai
 
 print("TEST START")
 
-key = os.getenv("GEMINI_API_KEY")
+api_key = os.getenv("GEMINI_API_KEY")
 
-if key:
-    print("GEMINI_API_KEY FOUND")
-else:
-    print("GEMINI_API_KEY NOT FOUND")
+if not api_key:
+    print("ERROR: API KEY NOT FOUND")
+    raise SystemExit(1)
 
-print("TEST END")
+print("API KEY FOUND")
+
+client = genai.Client(api_key=api_key)
+
+response = client.models.generate_content(
+    model="gemini-2.5-flash",
+    contents="Say hello in one short sentence."
+)
+
+print("GEMINI SUCCESS")
+print(response.text)
