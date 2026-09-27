@@ -1,26 +1,27 @@
-name: YouTube Automation
+import os
+from google import genai
 
-on:
-  workflow_dispatch:
+print("START")
 
-jobs:
-  run-python:
-    runs-on: ubuntu-latest
+api_key = os.getenv("GEMINI_API_KEY")
 
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+if not api_key:
+    print("API KEY NOT FOUND")
+    raise SystemExit(1)
 
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
+print("API KEY FOUND")
 
-      - name: Install dependencies
-        run: |
-          pip install -r requirements.txt
- 
-      - name: Run Python
-        env:
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-        run: python gemini_test.py
+client = genai.Client(api_key=api_key)
+
+try:
+    response = client.models.generate_content(
+        model="gemini-2.5-flash",
+        contents="Say hello."
+    )
+    print("GEMINI WORKS")
+    print(response.text)
+except Exception as e:
+    print("GEMINI ERROR:")
+    print(type(e).__name__)
+    print(str(e))
+    raise
