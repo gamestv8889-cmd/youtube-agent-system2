@@ -15,7 +15,7 @@ client = genai.Client(api_key=api_key)
 
 try:
     response = client.models.generate_content(
-        model="gemini-2.5-flash",
+        model="gemini-3.8-flash",
         contents="Say hello."
     )
     print("GEMINI WORKS")
